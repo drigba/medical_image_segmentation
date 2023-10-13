@@ -6,7 +6,6 @@ import random
 import torchvision.transforms.functional as TF
 
 
-
 class DualTransform(object):
     def __init__(self, degree, max_translate_x, max_translate_y) -> None:
         self.degree = degree
@@ -56,7 +55,13 @@ def get_acdc(path,input_size=(224,224,1)):
                     for idx in range(img.shape[2]):
                         i = cv2.resize(img[:,:,idx], (input_size[0], input_size[1]), interpolation=cv2.INTER_NEAREST)
                         all_gt.append(i)
-            
+            elif '.cfg' in file:
+                with open(root + "/" + file, 'r') as file:
+                    data = {}
+                    for line in file:
+                        label, value = line.strip().split(": ")
+                        data[label] = value
+                    info.append(data)
 
     data = [all_imgs, all_gt, info]                  
  
