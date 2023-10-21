@@ -1,6 +1,12 @@
 #  Model Ensemble for Medical Image Segmentation
 
+## Team name
 Another bomb training - Újabb bomba tanítás
+
+## Team members
+Benyák Bence József -
+Klenk Botond -
+Bánfi Zsombor - L1N5IV
 
 # Project Description: Enhancing Deep-Learning Solutions through Model Ensembles for Semantic Segmentation on ACDC Dataset
 
@@ -46,24 +52,26 @@ We anticipate an improvement in the accuracy of semantic segmentation for the AC
 - []
 
 ## Upcoming Milestones
-- [I. Milestone  - Containerization, data acquisition, preparation and analysis]
-- [II. Milestone - Baseline evaluation, baseline model]
-- [III. Milestone - Final submission]
+- [] I. Milestone  - Containerization, data acquisition, preparation and analysis
+- [] II. Milestone - Baseline evaluation, baseline model
+- [] III. Milestone - Final submission
 
-
-
-# Team members:
-Benyák Bence József -
-Klenk Botond -
-Bánfi Zsombor - L1N5IV
 
 # Files descriptions
+ - acdc_datamodule.py: contains the Datamodule for the pytorch lightning framework. Handles Dataset and Dataloader creation.
+ - acdc_dataset.py: contains the ACDCDataset pytorch Dataset class, that handles the loading, transformation and indexing of data samples
+ - acdc_utils.py: contains utility functions for the ACDCDataset and ACDCDataModule classes
+   - DualTransform: class, that applies the same augmentation transformation for both the image and the ground-truth
+   - get_acdc: loads and splits the MRI scan files from the given path
+   - convert_masks: splits multi-class masks into multiple single-class masks
+   - convert_mask_single: splits multi-class mask into multiple single-class masks
+   - visualize: visualize Nib images
 
+# How to
 
 # Related works
 https://www.creatis.insa-lyon.fr/Challenge/acdc/
 
 https://ieeexplore.ieee.org/document/8360453
 
-
-# How to
+https://github.com/kingo233/FCT-Pytorch/tree/main
