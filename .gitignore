@@ -1,2 +1,6 @@
 data_utils/__pycache__/*
 database/*
+.ipynb_checkpoints
+.ipython
+.jupyter
+.local
