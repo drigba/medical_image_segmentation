@@ -49,17 +49,16 @@ We anticipate an improvement in the accuracy of semantic segmentation for the AC
 - [ ] Compare ensemble and baseline model
 
 ## Milestones Achieved
-- []
 
 ## Upcoming Milestones
-- [] I. Milestone  - Containerization, data acquisition, preparation and analysis
-- [] II. Milestone - Baseline evaluation, baseline model
-- [] III. Milestone - Final submission
+- [ ] I. Milestone  - Containerization, data acquisition, preparation and analysis
+- [ ] II. Milestone - Baseline evaluation, baseline model
+- [ ] III. Milestone - Final submission
 
 
 # Files descriptions
  - acdc_datamodule.py: contains the Datamodule for the pytorch lightning framework. Handles Dataset and Dataloader creation.
- - acdc_dataset.py: contains the ACDCDataset pytorch Dataset class, that handles the loading, transformation and indexing of data samples
+ - acdc_dataset.py: contains the ACDCDataset pytorch Dataset class, which handles the loading, transformation, and indexing of data samples
  - acdc_utils.py: contains utility functions for the ACDCDataset and ACDCDataModule classes
    - DualTransform: class, that applies the same augmentation transformation for both the image and the ground-truth
    - get_acdc: loads and splits the MRI scan files from the given path
