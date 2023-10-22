@@ -1,3 +1,3 @@
 Port 22
 PermitRootLogin no
-AllowUsers custom_user
+AllowUsers developer

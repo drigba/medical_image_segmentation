@@ -8,7 +8,7 @@ docker build . -t pytorch-jupyter-with-cuda
 
 ## Push the container 
 Your teammates can use your version. (We use docker hub, please create an account)
-docker pull pytorch-jupyter-with-cuda
+docker image push docker.io/bence1922/pytorch-jupyter-with-cuda:latest 
 
 ## Start the container
 docker run --rm --gpus all -p 22:22 -p 8888:8888 -v $(dirname $(pwd)):/home/developer -w /home/developer bence1922/pytorch-jupyter-with-cuda:latest
