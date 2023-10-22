@@ -4,7 +4,8 @@
 Another bomb training - Újabb bomba tanítás
 
 ## Team members
-- Benyák Bence József -
+
+- Benyák Bence József - AQTBDV
 - Klenk Botond - FTNYN1
 - Bánfi Zsombor - L1N5IV
 
@@ -58,7 +59,7 @@ We anticipate an improvement in the accuracy of semantic segmentation for the AC
 
 # Files descriptions
  - acdc_datamodule.py: contains the Datamodule for the pytorch lightning framework. Handles Dataset and Dataloader creation.
- - acdc_dataset.py: contains the ACDCDataset pytorch Dataset class, that handles the loading, transformation and indexing of data samples
+ - acdc_dataset.py: contains the ACDCDataset pytorch Dataset class, which handles the loading, transformation, and indexing of data samples
  - acdc_utils.py: contains utility functions for the ACDCDataset and ACDCDataModule classes
    - DualTransform: class, that applies the same augmentation transformation for both the image and the ground-truth
    - get_acdc: loads and splits the MRI scan files from the given path
@@ -70,6 +71,13 @@ We anticipate an improvement in the accuracy of semantic segmentation for the AC
  - analysis.ipynb: dataset analysis
 
 # How to
+
+   ```bash
+   [chmod +x start.sh]
+   ./start.sh
+   ```
+
+This script automates dataset download and Docker container setup for a medical image machine learning project. It simplifies the initial project setup by downloading the dataset, preparing the data structure, and launching a Docker container with GPU support.
 
 # Related works
 https://www.creatis.insa-lyon.fr/Challenge/acdc/

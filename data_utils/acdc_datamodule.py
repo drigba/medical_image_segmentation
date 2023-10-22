@@ -1,6 +1,6 @@
 import torch
 import numpy as np
-import lightning.pytorch as PL
+import pytorch_lightning as PL
 from torch.utils.data import DataLoader,TensorDataset, random_split
 from data_utils.data_utils import convert_masks, get_acdc
 from data_utils.acdc_dataset import ACDCTrainDataset
