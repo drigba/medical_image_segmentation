@@ -1,4 +1,4 @@
-#  Model Ensemble for Medical Image Segmentation
+#  Enhancing Deep-Learning Solutions through Model Ensembles for Semantic Segmentation on ACDC Dataset
 
 ## Team name
 Another bomb training - Újabb bomba tanítás
@@ -9,13 +9,16 @@ Another bomb training - Újabb bomba tanítás
 - Klenk Botond - FTNYN1
 - Bánfi Zsombor - L1N5IV
 
-# Project Description: Enhancing Deep-Learning Solutions through Model Ensembles for Semantic Segmentation on ACDC Dataset
-
 ## Overview
 This project focuses on the implementation and analysis of model ensembles in deep learning to improve the accuracy of semantic segmentation. Model ensembles, a proven technique used by leading AI competition winners, involve integrating multiple models to enhance the overall precision of deep learning solutions. Although this approach incurs additional computational costs, it offers a promising avenue for significantly refining the performance of our deep-learning models.
 
+## Data Acquisition
+The ACDC (Automated Cardiac Diagnosis Challenge) dataset used in this project was acquired from [Human Heart Project](https://humanheart-project.creatis.insa-lyon.fr/database/#collection/637218c173e9f0047faa00fb). We also created a shell script that automatically downloads and unzips the dataset from a Google Drive folder. The dataset comprises complex cardiac MRI scans, providing a rich and diverse set of data for training and evaluating our model ensemble.
+
+
 ## Objective
-Our main objective is to explore and apply various strategies for constructing effective model ensembles tailored specifically for semantic segmentation tasks. We will leverage the ACDC (Automated Cardiac Diagnosis Challenge) dataset, a rich repository of complex cardiac MRI scans. Our ultimate goal is to accurately identify distinct components of the heart, including the RV cavity, the myocardium, and the LV cavity.
+Our main objective is to explore and apply various strategies for constructing effective model ensembles tailored specifically for semantic segmentation tasks. We will leverage the ACDC dataset for training and evaluation purposes.
+
 
 ## Methodology
 The project methodology entails comprehensive training of multiple deep-learning models, followed by the construction of an ensemble from these models. The focus will be on scrutinizing the iterative enhancements in accuracy facilitated by the ensemble approach. Simultaneously, we will conduct a thorough assessment of the associated benefits and computational overheads incurred while leveraging model ensembles.
@@ -66,8 +69,8 @@ We anticipate an improvement in the accuracy of semantic segmentation for the AC
    - convert_masks: splits multi-class masks into multiple single-class masks
    - convert_mask_single: splits multi-class mask into multiple single-class masks
    - visualize: visualize Nib images
-   - get_images_with_info: like the get_acdc but it appends additional infos to the images for easier analysing
-   - get_label_percentages: returns the the percentages of pixels for the different labels in a labeled image
+   - get_images_with_info: like the get_acdc but it appends additional info to the images for easier analysis
+   - get_label_percentages: returns the percentages of pixels for the different labels in a labeled image
  - analysis.ipynb: dataset analysis
  - start.sh: downloads the dataset and runs the container
 
@@ -78,7 +81,7 @@ We anticipate an improvement in the accuracy of semantic segmentation for the AC
    ./start.sh
    ```
 
-This script automates dataset download and Docker container setup for a medical image machine learning project. It simplifies the initial project setup by downloading the dataset, preparing the data structure, and launching a Docker container with GPU support.
+This script automates dataset download and Docker container setup for a medical image machine-learning project. It simplifies the initial project setup by downloading the dataset, preparing the data structure, and launching a Docker container with GPU support.
 
 # Related works
 https://www.creatis.insa-lyon.fr/Challenge/acdc/
