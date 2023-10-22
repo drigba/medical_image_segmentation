@@ -69,6 +69,7 @@ We anticipate an improvement in the accuracy of semantic segmentation for the AC
    - get_images_with_info: like the get_acdc but it appends additional infos to the images for easier analysing
    - get_label_percentages: returns the the percentages of pixels for the different labels in a labeled image
  - analysis.ipynb: dataset analysis
+ - start.sh: downloads the dataset and runs the container
 
 # How to
 
