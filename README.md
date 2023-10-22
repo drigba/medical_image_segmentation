@@ -4,9 +4,9 @@
 Another bomb training - Újabb bomba tanítás
 
 ## Team members
-Benyák Bence József -
-Klenk Botond -
-Bánfi Zsombor - L1N5IV
+- Benyák Bence József -
+- Klenk Botond - FTNYN1
+- Bánfi Zsombor - L1N5IV
 
 # Project Description: Enhancing Deep-Learning Solutions through Model Ensembles for Semantic Segmentation on ACDC Dataset
 
@@ -33,7 +33,9 @@ We anticipate an improvement in the accuracy of semantic segmentation for the AC
 ## Data Analysis
 - [x] Data analysis on the dataset has been concluded.
 - [x] Key insights from the analysis:
-  - [Insert key insights here]
+  - the dataset contains different number of frames for each patient
+  - correlation between distinct groups and the proportion of specific cardiac components
+  - correlation between the record's phase (ED or ES) and the proportion of specific cardiac components
 
 ## Docker
 - [x] Initial version of the Dockerfile is complete.
@@ -48,13 +50,10 @@ We anticipate an improvement in the accuracy of semantic segmentation for the AC
 - [ ] Document the ensemble training process
 - [ ] Compare ensemble and baseline model
 
-## Milestones Achieved
-- []
-
-## Upcoming Milestones
-- [] I. Milestone  - Containerization, data acquisition, preparation and analysis
-- [] II. Milestone - Baseline evaluation, baseline model
-- [] III. Milestone - Final submission
+## Milestones
+- [x] I. Milestone  - Containerization, data acquisition, preparation and analysis
+- [ ] II. Milestone - Baseline evaluation, baseline model
+- [ ] III. Milestone - Final submission
 
 
 # Files descriptions
@@ -66,6 +65,9 @@ We anticipate an improvement in the accuracy of semantic segmentation for the AC
    - convert_masks: splits multi-class masks into multiple single-class masks
    - convert_mask_single: splits multi-class mask into multiple single-class masks
    - visualize: visualize Nib images
+   - get_images_with_info: like the get_acdc but it appends additional infos to the images for easier analysing
+   - get_label_percentages: returns the the percentages of pixels for the different labels in a labeled image
+ - analysis.ipynb: dataset analysis
 
 # How to
 

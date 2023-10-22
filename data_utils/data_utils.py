@@ -130,3 +130,55 @@ def visualize(image_raw,mask):
         image = cv2.addWeighted(image, 1.0, class_mask, 0.5, 0.0)
 
     return image
+
+def get_images_with_info(path):
+    all_imgs = []
+    all_gts = []
+    infos = []
+    for root, directories, files in os.walk(path):
+        current_group = ""
+        current_ES = ""
+        for file in files:
+            if '.cfg' in file:
+                with open(root + "/" + file, 'r') as file:
+                    data = {}
+                    for line in file:
+                        label, value = line.strip().split(": ")
+                        data[label] = value
+                    current_group = data['Group']
+                    current_ES = data['ES']
+                    infos.append(data)
+            elif ".gz" and "frame" in file:
+                if "_gt" not in file:
+                    phase = ""
+                    if int(current_ES) == int(file[16:18]):
+                        phase = "ES"
+                    else:
+                        phase = "ED"
+                    img_path = root + "/" + file
+                    img = nib.load(img_path).get_fdata()
+                    for idx in range(img.shape[2]):
+                        all_imgs.append([img[:,:,idx],current_group,phase])
+                else:
+                    phase = ""
+                    if int(current_ES) == int(file[16:18]):
+                        phase = "ES"
+                    else:
+                        phase = "ED"
+                    img_path = root + "/" + file
+                    img = nib.load(img_path).get_fdata()
+                    for idx in range(img.shape[2]):
+                        all_gts.append([img[:,:,idx],current_group,phase])
+
+    data = [all_imgs, all_gts, infos]  
+    
+    return data
+
+def get_label_percentages(label_img):
+    size = label_img.shape
+    pixel_count = size[0]*size[1]
+    percs = []
+    for i in range(4):
+        percs += [np.count_nonzero((label_img[:,:] == i))/pixel_count]
+    return percs
+    
