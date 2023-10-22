@@ -4,7 +4,7 @@
 Another bomb training - Újabb bomba tanítás
 
 ## Team members
-Benyák Bence József -
+Benyák Bence József - AQTBDV
 Klenk Botond -
 Bánfi Zsombor - L1N5IV
 
@@ -67,6 +67,13 @@ We anticipate an improvement in the accuracy of semantic segmentation for the AC
    - visualize: visualize Nib images
 
 # How to
+
+   ```bash
+   [chmod +x start.sh]
+   ./start.sh
+   ```
+
+This script automates dataset download and Docker container setup for a medical image machine learning project. It simplifies the initial project setup by downloading the dataset, preparing the data structure, and launching a Docker container with GPU support.
 
 # Related works
 https://www.creatis.insa-lyon.fr/Challenge/acdc/
