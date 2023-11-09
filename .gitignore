@@ -4,3 +4,7 @@ database/*
 .ipython
 .jupyter
 .local
+database_small/*
+lightning_logs/*
+wandb/*
+**/__pycache__/*
