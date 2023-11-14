@@ -1,0 +1,1 @@
+from .SimpleSegmentationModel import SimpleSegmentationModel

@@ -8,3 +8,4 @@ database_small/*
 lightning_logs/*
 wandb/*
 **/__pycache__/*
+Medical Image Segmentation/*
