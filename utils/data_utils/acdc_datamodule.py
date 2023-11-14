@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import os
 
 class ACDCDataModule(PL.LightningDataModule):
-    def __init__(self, data_dir, train_batch_size, val_batch_size, test_batch_size, img_size, convert_to_single) -> None:
+    def __init__(self, data_dir, train_batch_size, val_batch_size, test_batch_size, img_size, convert_to_single,num_workers) -> None:
         super().__init__()
         self.data_dir = data_dir
         self.train_batch_size = train_batch_size
@@ -16,6 +16,7 @@ class ACDCDataModule(PL.LightningDataModule):
         self.test_batch_size = test_batch_size
         self.img_size = img_size
         self.convert_to_single = convert_to_single
+        self.num_workers = num_workers
 
     def setup(self, stage: str):
         # Assign train/val datasets for use in dataloaders
@@ -34,8 +35,8 @@ class ACDCDataModule(PL.LightningDataModule):
             acdc_data_test[1] = torch.Tensor(acdc_data_test[1]) # convert to tensors
             self.acdc_test = TensorDataset(acdc_data_test[0], acdc_data_test[1])
 
-    def train_dataloader(self):
-        return DataLoader(self.acdc_train, batch_size=self.train_batch_size)
+    def train_dataloader(self, num_workers):
+        return DataLoader(self.acdc_train, batch_size=self.train_batch_size, num_workers=num_workers)
 
     def val_dataloader(self):
         return DataLoader(self.acdc_val, batch_size=self.val_batch_size)
