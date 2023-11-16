@@ -8,7 +8,9 @@ import matplotlib.pyplot as plt
 import os
 
 class ACDCDataModule(PL.LightningDataModule):
-    def __init__(self, data_dir, train_batch_size, val_batch_size, test_batch_size, img_size, convert_to_single,num_workers) -> None:
+    def __init__(self, data_dir, train_batch_size, 
+                 val_batch_size, test_batch_size, img_size,
+                 convert_to_single = False, transform = None) -> None:
         super().__init__()
         self.data_dir = data_dir
         self.train_batch_size = train_batch_size
@@ -16,14 +18,19 @@ class ACDCDataModule(PL.LightningDataModule):
         self.test_batch_size = test_batch_size
         self.img_size = img_size
         self.convert_to_single = convert_to_single
-        self.num_workers = num_workers
+        self.transform = transform
 
     def setup(self, stage: str):
         # Assign train/val datasets for use in dataloaders
         if stage == "fit":
-            acdc_data, _, _ = get_acdc(os.path.join(self.data_dir, "training"), input_size=self.img_size)
-            full_dataset = ACDCTrainDataset(acdc_data[0], acdc_data[1],self.img_size, self.convert_to_single)
-            self.acdc_train, self.acdc_val = random_split(full_dataset,[0.8,0.2])
+            acdc_train, _, _ = get_acdc(os.path.join(self.data_dir, "training"), input_size=self.img_size)
+            self.acdc_train = ACDCTrainDataset(acdc_train[0], acdc_train[1], self.img_size,
+                                            convert_to_single= self.convert_to_single,
+                                            transform=self.transform)
+            acdc_val, _, _ = get_acdc(os.path.join(self.data_dir, "validation"), input_size=self.img_size)
+            self.acdc_val = ACDCTrainDataset(acdc_val[0], acdc_val[1], self.img_size,
+                                            convert_to_single= self.convert_to_single,
+                                            transform=None)
 
         # Assign test dataset for use in dataloader(s)
         if stage == "test":
@@ -35,8 +42,8 @@ class ACDCDataModule(PL.LightningDataModule):
             acdc_data_test[1] = torch.Tensor(acdc_data_test[1]) # convert to tensors
             self.acdc_test = TensorDataset(acdc_data_test[0], acdc_data_test[1])
 
-    def train_dataloader(self, num_workers):
-        return DataLoader(self.acdc_train, batch_size=self.train_batch_size, num_workers=num_workers)
+    def train_dataloader(self):
+        return DataLoader(self.acdc_train, batch_size=self.train_batch_size)
 
     def val_dataloader(self):
         return DataLoader(self.acdc_val, batch_size=self.val_batch_size)
