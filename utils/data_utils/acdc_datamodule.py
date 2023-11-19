@@ -34,13 +34,17 @@ class ACDCDataModule(PL.LightningDataModule):
 
         # Assign test dataset for use in dataloader(s)
         if stage == "test":
-            acdc_data_test, _, _ = get_acdc(os.path.join(self.data_dir, "testing"), input_size=self.img_size)
+            acdc_test, _, _ = get_acdc(os.path.join(self.data_dir, "testing"), input_size=self.img_size)
+            self.acdc_test = ACDCTrainDataset(acdc_test[0], acdc_test[1], self.img_size,
+                                            convert_to_single= self.convert_to_single,
+                                            transform=None)
+            """acdc_data_test, _, _ = get_acdc(os.path.join(self.data_dir, "testing"), input_size=self.img_size)
             acdc_data_test[1] = convert_masks(acdc_data_test[1])
             acdc_data_test[0] = np.transpose(acdc_data_test[0], (0, 3, 1, 2)) # for the channels
             acdc_data_test[1] = np.transpose(acdc_data_test[1], (0, 3, 1, 2)) # for the channels
             acdc_data_test[0] = torch.Tensor(acdc_data_test[0]) # convert to tensors
             acdc_data_test[1] = torch.Tensor(acdc_data_test[1]) # convert to tensors
-            self.acdc_test = TensorDataset(acdc_data_test[0], acdc_data_test[1])
+            self.acdc_test = TensorDataset(acdc_data_test[0], acdc_data_test[1])"""
 
     def train_dataloader(self):
         return DataLoader(self.acdc_train, batch_size=self.train_batch_size)
