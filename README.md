@@ -60,7 +60,7 @@ We anticipate an improvement in the accuracy of semantic segmentation for the AC
 - [ ] III. Milestone - Final submission
 
 
-# Files descriptions
+# File descriptions
  - acdc_datamodule.py: contains the Datamodule for the pytorch lightning framework. Handles Dataset and Dataloader creation.
  - acdc_dataset.py: contains the ACDCDataset pytorch Dataset class, which handles the loading, transformation, and indexing of data samples
  - acdc_utils.py: contains utility functions for the ACDCDataset and ACDCDataModule classes
@@ -76,12 +76,48 @@ We anticipate an improvement in the accuracy of semantic segmentation for the AC
 
 # How to
 
+## Setup environment
+
    ```bash
    [chmod +x start.sh]
    ./start.sh
    ```
 
 This script automates dataset download and Docker container setup for a medical image machine-learning project. It simplifies the initial project setup by downloading the dataset, preparing the data structure, and launching a Docker container with GPU support.
+
+## Train models
+
+The training pipeline is implemented in the `modeling.ipynb` file. Open this Jupyter Notebook to access the training code and follow the steps below.
+
+### Model Selection
+
+There are four different models available for training. Choose the desired model by uncommenting the corresponding section in the notebook. The available models are:
+1. Unet from the segmentation_models_pytorch library
+2. Unet from the [original Unet paper] (https://arxiv.org/abs/1505.04597)
+3. [fcn_resnet50](https://arxiv.org/abs/1411.4038) from the pytorch pretrained models
+4. Simple segmentation model
+
+### Loss Functions
+
+Two different loss functions have been implemented for experimentation. You can choose between Crossentropy Loss and Dice Loss by uncommenting the appropriate section in the notebook.
+
+
+### Dataset Modification
+
+Depending on the selected loss function, the dataset may need to be modified. If using the Crossentropy Loss, the masks should be converted to one-hot format. Set the `convert_to_single` flag accordingly in the dataset constructor.
+
+### Training Process
+
+After setting the model, loss function, and dataset modification parameters, run the notebook to initiate the training process. Follow the instructions and monitor the training progress. Adjust hyperparameters as needed based on the training results.
+
+Feel free to experiment with different models, loss functions, and dataset configurations to find the best combination for your specific use case.
+
+Happy training!
+
+
+
+
+ 
 
 # Related works
 https://www.creatis.insa-lyon.fr/Challenge/acdc/
