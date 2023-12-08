@@ -47,10 +47,10 @@ class ACDCDataModule(PL.LightningDataModule):
             self.acdc_test = TensorDataset(acdc_data_test[0], acdc_data_test[1])"""
 
     def train_dataloader(self):
-        return DataLoader(self.acdc_train, batch_size=self.train_batch_size)
+        return DataLoader(self.acdc_train, batch_size=self.train_batch_size, pin_memory=True, shuffle=True)
 
     def val_dataloader(self):
-        return DataLoader(self.acdc_val, batch_size=self.val_batch_size)
+        return DataLoader(self.acdc_val, batch_size=self.val_batch_size, pin_memory=True)
 
     def test_dataloader(self):
-        return DataLoader(self.acdc_test, batch_size=self.test_batch_size)
+        return DataLoader(self.acdc_test, batch_size=self.test_batch_size, pin_memory=True)
