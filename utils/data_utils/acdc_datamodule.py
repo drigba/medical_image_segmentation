@@ -8,9 +8,22 @@ import matplotlib.pyplot as plt
 import os
 
 class ACDCDataModule(PL.LightningDataModule):
+    """
+    LightningDataModule for loading and preparing ACDC dataset for training, validation, and testing.
+
+    Args:
+        data_dir (str): The directory path where the ACDC dataset is located.
+        train_batch_size (int): Batch size for training dataloader.
+        val_batch_size (int): Batch size for validation dataloader.
+        test_batch_size (int): Batch size for testing dataloader.
+        img_size (int): Size of the input images.
+        convert_to_single (bool, optional): Whether to convert the labels to single-channel masks. Defaults to False.
+        transform (callable, optional): Optional transform to be applied to the input images. Defaults to None.
+    """
+
     def __init__(self, data_dir, train_batch_size, 
                  val_batch_size, test_batch_size, img_size,
-                 convert_to_single = False, transform = None) -> None:
+                 convert_to_single=False, transform=None) -> None:
         super().__init__()
         self.data_dir = data_dir
         self.train_batch_size = train_batch_size
@@ -25,26 +38,19 @@ class ACDCDataModule(PL.LightningDataModule):
         if stage == "fit":
             acdc_train, _, _ = get_acdc(os.path.join(self.data_dir, "training"), input_size=self.img_size)
             self.acdc_train = ACDCTrainDataset(acdc_train[0], acdc_train[1], self.img_size,
-                                            convert_to_single= self.convert_to_single,
+                                            convert_to_single=self.convert_to_single,
                                             transform=self.transform)
             acdc_val, _, _ = get_acdc(os.path.join(self.data_dir, "validation"), input_size=self.img_size)
             self.acdc_val = ACDCTrainDataset(acdc_val[0], acdc_val[1], self.img_size,
-                                            convert_to_single= self.convert_to_single,
+                                            convert_to_single=self.convert_to_single,
                                             transform=None)
 
         # Assign test dataset for use in dataloader(s)
         if stage == "test":
             acdc_test, _, _ = get_acdc(os.path.join(self.data_dir, "testing"), input_size=self.img_size)
             self.acdc_test = ACDCTrainDataset(acdc_test[0], acdc_test[1], self.img_size,
-                                            convert_to_single= self.convert_to_single,
+                                            convert_to_single=self.convert_to_single,
                                             transform=None)
-            """acdc_data_test, _, _ = get_acdc(os.path.join(self.data_dir, "testing"), input_size=self.img_size)
-            acdc_data_test[1] = convert_masks(acdc_data_test[1])
-            acdc_data_test[0] = np.transpose(acdc_data_test[0], (0, 3, 1, 2)) # for the channels
-            acdc_data_test[1] = np.transpose(acdc_data_test[1], (0, 3, 1, 2)) # for the channels
-            acdc_data_test[0] = torch.Tensor(acdc_data_test[0]) # convert to tensors
-            acdc_data_test[1] = torch.Tensor(acdc_data_test[1]) # convert to tensors
-            self.acdc_test = TensorDataset(acdc_data_test[0], acdc_data_test[1])"""
 
     def train_dataloader(self):
         return DataLoader(self.acdc_train, batch_size=self.train_batch_size, pin_memory=True, shuffle=True)

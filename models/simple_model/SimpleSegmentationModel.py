@@ -2,6 +2,19 @@ import torch
 import torch.nn as nn
 
 class SimpleSegmentationModel(nn.Module):
+    """
+    Simple segmentation model for image segmentation tasks.
+
+    Args:
+        in_channels (int): Number of input channels. Default is 1.
+        out_channels (int): Number of output channels. Default is 4.
+
+    Attributes:
+        downsample (nn.Sequential): Downsample layers consisting of convolutional and pooling operations.
+        upsample (nn.Sequential): Upsample layers consisting of transpose convolutional operations.
+
+    """
+
     def __init__(self, in_channels=1, out_channels=4):
         super().__init__()
         self.downsample = nn.Sequential(
@@ -29,6 +42,16 @@ class SimpleSegmentationModel(nn.Module):
         )
 
     def forward(self, x):
+        """
+        Forward pass of the model.
+
+        Args:
+            x (torch.Tensor): Input tensor.
+
+        Returns:
+            torch.Tensor: Output tensor.
+
+        """
         x = self.downsample(x)
         x = self.upsample(x)
         return x

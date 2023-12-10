@@ -7,6 +7,15 @@ import torchvision.transforms.functional as TF
 
 
 class DualTransform(object):
+    """
+    DualTransform is a class that applies a combination of transformations to an image and its corresponding segmentation.
+
+    Args:
+        degree (int): The maximum rotation degree for the affine transformation.
+        max_translate_x (float): The maximum translation distance along the x-axis for the affine transformation.
+        max_translate_y (float): The maximum translation distance along the y-axis for the affine transformation.
+    """
+
     def __init__(self, degree, max_translate_x, max_translate_y) -> None:
         self.degree = degree
         self.max_translate_x = max_translate_x
@@ -132,6 +141,19 @@ def visualize(image_raw,mask):
     return image
 
 def get_images_with_info(path):
+    """
+    Retrieve images and related information from the specified path.
+
+    Args:
+        path (str): The path to the directory containing the images.
+
+    Returns:
+        list: A list containing three elements:
+            - all_imgs (list): A list of image data, where each element is a list containing the image, current group, and phase.
+            - all_gts (list): A list of ground truth data, where each element is a list containing the image, current group, and phase.
+            - infos (list): A list of additional information about each image, represented as dictionaries.
+
+    """
     all_imgs = []
     all_gts = []
     infos = []
@@ -175,6 +197,15 @@ def get_images_with_info(path):
     return data
 
 def get_label_percentages(label_img):
+    """
+    Calculates the percentage of each label in the given label image.
+
+    Parameters:
+    label_img (ndarray): The label image.
+
+    Returns:
+    list: A list of percentages for each label.
+    """
     size = label_img.shape
     pixel_count = size[0]*size[1]
     percs = []

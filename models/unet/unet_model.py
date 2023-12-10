@@ -4,6 +4,34 @@ from .unet_parts import *
 
 
 class UNet(nn.Module):
+    """
+    UNet is a convolutional neural network architecture for semantic segmentation.
+
+    Args:
+        n_channels (int): Number of input channels.
+        n_classes (int): Number of output classes.
+        bilinear (bool, optional): Whether to use bilinear upsampling or not. Default is False.
+
+    Attributes:
+        n_channels (int): Number of input channels.
+        n_classes (int): Number of output classes.
+        bilinear (bool): Whether to use bilinear upsampling or not.
+        inc (DoubleConv): Instance of the DoubleConv class for the initial convolutional layers.
+        down1 (Down): Instance of the Down class for the first downsampling block.
+        down2 (Down): Instance of the Down class for the second downsampling block.
+        down3 (Down): Instance of the Down class for the third downsampling block.
+        down4 (Down): Instance of the Down class for the fourth downsampling block.
+        up1 (Up): Instance of the Up class for the first upsampling block.
+        up2 (Up): Instance of the Up class for the second upsampling block.
+        up3 (Up): Instance of the Up class for the third upsampling block.
+        up4 (Up): Instance of the Up class for the fourth upsampling block.
+        outc (OutConv): Instance of the OutConv class for the final convolutional layer.
+
+    Methods:
+        forward(x): Performs forward pass through the UNet model.
+        use_checkpointing(): Enables checkpointing for all the layers in the UNet model.
+    """
+
     def __init__(self, n_channels, n_classes, bilinear=False):
         super(UNet, self).__init__()
         self.n_channels = n_channels
