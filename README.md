@@ -45,19 +45,19 @@ We anticipate an improvement in the accuracy of semantic segmentation for the AC
 - [x] Initial version of the Dockerfile is complete.
 
 ## Next Steps
-- [ ] Define evaluation metrics
-- [ ] Define and implement baseline model.
-- [ ] Train the model with the prepared data.
-- [ ] Document the model training process.
-- [ ] Construct model ensemble
-- [ ] Train ensemble
-- [ ] Document the ensemble training process
-- [ ] Compare ensemble and baseline model
+- [x] Define evaluation metrics
+- [x] Define and implement baseline model.
+- [x] Train the model with the prepared data.
+- [x] Document the model training process.
+- [x] Construct model ensemble
+- [x] Train ensemble
+- [x] Document the ensemble training process
+- [x] Compare ensemble and baseline model
 
 ## Milestones
 - [x] I. Milestone  - Containerization, data acquisition, preparation and analysis
-- [ ] II. Milestone - Baseline evaluation, baseline model
-- [ ] III. Milestone - Final submission
+- [x] II. Milestone - Baseline evaluation, baseline model
+- [x] III. Milestone - Final submission
 
 
 # File descriptions
@@ -71,7 +71,8 @@ We anticipate an improvement in the accuracy of semantic segmentation for the AC
    - visualize: visualize Nib images
    - get_images_with_info: like the get_acdc but it appends additional info to the images for easier analysis
    - get_label_percentages: returns the percentages of pixels for the different labels in a labeled image
- - analysis.ipynb: dataset analysis
+ - data_analysis.ipynb: dataset analysis
+ - model_analysis.ipynb: analysis of model runs
  - start.sh: downloads the dataset and runs the container
 
 # How to
